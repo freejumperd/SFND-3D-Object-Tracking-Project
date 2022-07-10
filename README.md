@@ -55,23 +55,21 @@ In the camFusion_Student.cpp, clusterKptMatchesWithROI(). The keypoints in previ
 In the camFusion_Student.cpp, the time-to-collision in seconds is implemented using the relationship established between keypoint correspondences between previous and current frames.
 
 ## Write up
-After finishing the pipeline in the FinalProject_Camera.cpp, the TTC estimations based on both Lidar points and Camera images is generated. An example output looks like the screenshot below.
-![animation](./images/results/result.gif)
+After finishing the pipeline in the FinalProject_Camera.cpp, the TTC estimations based on both Lidar points and Camera images is generated. 
 
 ### FP.5 Performance Evaluation 1
-An example where the Lidar TTC estimate is inplausible is when lidar returns some points which are clearly not located on the vehicle, but much closer than that. It could be some dust particles in the air which introduce noise into the lidar scans. The result is a very low TTC.
-To fix this, we can be more robust to the outliers by using an average distance instead of the closest point.
-
-Another example of an inplausible Lidar TTC estimate, is where there are outliers due to the lidar scanning other parts of the vehicle in addition to its back surface. For example, the lidar is measuring the side mirrors, which appear much further away than the actual back of the car. In the experiment, the TTC increased from 12 to 16 seconds even though the minimum distance decreased from 7.79m to 7.68m. These points can be filtered out simply by increasing the shrink factor when clustering the lidar with ROI.
+An example where the Lidar TTC estimate is inaccurate is when lidar  is not always correct because of some outliers and some unstable points from preceding vehicle's  but much closer than that. e.g. the ttc from lidar jumps from 12.8s to 17.6s in betwwen to close frames
+![result_0002](https://user-images.githubusercontent.com/31724244/178157947-b999ed0e-a943-44eb-823b-39cdecaacbb4.png)
+![result_0003](https://user-images.githubusercontent.com/31724244/178157960-c0400ff7-673d-4074-95c4-8a39b9268af2.png)
+even though the minimum distance decreased from 7.79m to 7.68m. These points can be filtered out simply by increasing the shrink factor when clustering the lidar with ROI. e.g. change the shrink factor from 0.1 to 0,2 or higher
 
 ### FP.6 Performance Evaluation 2
-As learnt from the mid-term project, various test of different combinations of detector/descriptors were tested. 
-As shown in the result below, the best performing camera TTC calculations used AKAZE detector and FREAK descriptor.
+As learnt from the mid-term project, various test of different combinations of detector/descriptors were tested in terms of performance vs accuracy and speed.
+As shown in the result, the top 3 detector/descriptor combinations, that achieve minimal processing time with significant matches are:
+![Capture](https://user-images.githubusercontent.com/31724244/178158347-2415cc3d-417b-40bb-907f-d6b40563c998.PNG)
 
-An example of an inplausible Camera TTC is if it came out to something much larger than 10 seconds. This is always due to bad keypoint matching, or the keypoint descriptor is not good enough to discriminate keypoints which are clustered together.
+Similar as Lidar, Camera TTC is not alway accurate or robust. This is normally due to poor keypoint matching, or the keypoint descriptor is not good enough to discriminate keypoints which are clustered together.  e.g. the ttc from camera jumps from 16s to 26s in betwwen to close frames
+![result_0007](https://user-images.githubusercontent.com/31724244/178158452-72b035be-0d0f-413c-b864-026b5c4e8e92.png)
+![result_0008](https://user-images.githubusercontent.com/31724244/178158456-e22151a8-9b54-4de6-a648-6ed654ae58d5.png)
 
-Below is a plot showing the Camera TTC compared to Lidar TTC.
-![Plot](./images/FP6a.png)
 
-The best performing ones are:
-![Plot](./images/FP6.png)
