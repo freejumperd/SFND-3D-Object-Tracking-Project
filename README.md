@@ -62,7 +62,12 @@ An example where the Lidar TTC estimate is inaccurate is when lidar  is not alwa
 even though the minimum distance decreased from 7.79m to 7.68m. These points can be filtered out simply by increasing the shrink factor when clustering the lidar with ROI. e.g. change the shrink factor from 0.1 to 0,2 or higher
 
 FIX**: after implementing the median value instead of mean, the Lidar TTC results is relatively robust and reasonable since the impact of the outliers is significantly reduced. 
+
+![image](https://user-images.githubusercontent.com/31724244/178225192-4330c734-4df8-42f3-a1f0-13a3efd9934e.png)
+![image](https://user-images.githubusercontent.com/31724244/178225133-e20dbcc6-6262-4e58-a6b2-1793e13b0508.png)
+
 However there are a few frames of result that are shown a higher std, this is mainly due to be simplified 1st order CV model that's used to calculate TTC since Lidar doesn't provide doppler measurement directly. 
+
 ![result_0002](https://user-images.githubusercontent.com/31724244/178166670-fc7b960a-075b-4179-bc6f-59093776663a.png)
 ![result_0003](https://user-images.githubusercontent.com/31724244/178166673-b05d91bb-f733-437c-9f0d-065ed16c382a.png)
 
