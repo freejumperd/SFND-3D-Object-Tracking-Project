@@ -95,5 +95,6 @@ Finally, the average of the TTC calculated along the whole set of frames is show
 |AKAZE|AKAZE|3.69089|11.7444|12.2384|
 |SIFT|SIFT|3.28828|11.7444|**11.7344**|
 |FAST|FREAK|6.74713|11.7444|**11.8533**|
+
 As shown in the result, the top 3 detector/descriptor combinations, that achieve most close result to Lidar TTC in average are: SIFT+SIFT; FAST+FREAK; FAST+BRIEF. 
 
